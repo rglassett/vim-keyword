@@ -17,7 +17,7 @@ xnoremap <Plug>LookupVisual y:call <SID>Lookup(getreg('"'))<CR>
 
 if !exists('g:lookup_command')
   if &keywordprg == ':help'
-    let g:lookup_command = ':help {keyword}'
+    let g:lookup_command = 'help {keyword}'
   else
     let g:lookup_command = '!' . &keywordprg . ' {keyword}'
   endif
