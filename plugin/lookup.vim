@@ -8,7 +8,7 @@ function! s:LookupCommand()
 endfunction
 
 function! s:Lookup(keyword)
-  let s:lookup_command = substitute(s:LookupCommand(), "{keyword}", a:keyword, "g")
+  let s:lookup_command = substitute(s:LookupCommand(), '{keyword}', a:keyword, 'g')
   execute s:lookup_command
 endfunction
 
