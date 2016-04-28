@@ -12,8 +12,25 @@ function! s:Lookup(keyword)
   execute s:lookup_command
 endfunction
 
-nnoremap <Plug>LookupNormal :call <SID>Lookup(expand('<cword>'))<CR>
-xnoremap <Plug>LookupVisual y:call <SID>Lookup(getreg('"'))<CR>
+function! s:GetVisualSelection()
+  let temp = @s
+  normal! gv"sy
+  let foo = @s
+  let @s = temp
+  return foo
+endfunction
+
+function! s:LookupNormal()
+  call s:Lookup(expand('<cword>'))
+endfunction
+
+function! s:LookupVisual()
+  let selection = s:GetVisualSelection()
+  call s:Lookup(selection)
+endfunction
+
+nnoremap <Plug>LookupNormal :call <SID>LookupNormal()<CR>
+xnoremap <Plug>LookupVisual :<C-u>call <SID>LookupVisual()<CR>
 
 if !exists('g:lookup_command')
   if &keywordprg == ':help'
