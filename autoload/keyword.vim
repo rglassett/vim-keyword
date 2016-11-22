@@ -3,16 +3,16 @@ function! keyword#Command()
 endfunction
 
 function! keyword#Execute(keyword)
-  let keyword_command = substitute(keyword#Command(), '{keyword}', a:keyword, 'g')
-  execute keyword_command
+  let l:keyword_command = substitute(keyword#Command(), '{keyword}', a:keyword, 'g')
+  execute l:keyword_command
 endfunction
 
 function! keyword#GetVisualSelection()
-  let temp = @s
+  let l:temp = @s
   normal! gv"sy
-  let foo = @s
-  let @s = temp
-  return foo
+  let l:foo = @s
+  let @s = l:temp
+  return l:foo
 endfunction
 
 function! keyword#ExecuteNormal()
@@ -20,6 +20,6 @@ function! keyword#ExecuteNormal()
 endfunction
 
 function! keyword#ExecuteVisual()
-  let selection = keyword#GetVisualSelection()
-  call keyword#Execute(selection)
+  let l:selection = keyword#GetVisualSelection()
+  call keyword#Execute(l:selection)
 endfunction
